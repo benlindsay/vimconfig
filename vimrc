@@ -184,6 +184,20 @@ endfunc
 "Use \n to toggle between relative #'s -> no #'s -> absolute #'s -> rel...
 nnoremap <silent><leader>n :call NumberToggle()<cr>
 
+" ======================== AUTOMATIC C++ FORMATTING ========================= "
+
+" Automatic header guards on new .h or .hpp file creation
+" Adapted from:
+" http://vim.wikia.com/wiki/Automatic_insertion_of_C/C%2B%2B_header_gates
+function! s:insert_gates()
+  let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
+  execute "normal! i#ifndef " . gatename
+  execute "normal! o#define " . gatename . " "
+  execute "normal! Go\n\n\n#endif // " . gatename
+  normal! Gkk
+endfunction
+autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
+
 " ========================== OTHER KEY MAPPINGS ============================= "
 
 " Tell j and k to navigate displayed lines instead of actual lines so that long
