@@ -57,8 +57,8 @@ set showcmd
 set incsearch
 
 " Show current line number and relative line numbers above and below
-set relativenumber " shortcut is set rnu
 set number         " shortcut is set nu 
+set relativenumber " shortcut is set rnu
 
 " Only do this part when compiled with support for autocommands. 
 if has("autocmd") 
