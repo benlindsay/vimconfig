@@ -7,4 +7,3 @@ if [ "$#" -lt "$minargs" ]; then
   exit 1
 fi
 
-
