@@ -9,7 +9,7 @@ def main():
     return
 
 if __name__ == "__main__":
-    minargs = 1
+    minargs = 0
     if len(sys.argv[1:]) < minargs:
         print "Usage:", sys.argv[0], "[args]"
         exit(1)
