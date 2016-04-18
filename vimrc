@@ -209,9 +209,14 @@ nnoremap k gk
 inoremap jk <esc>
 
 " Operator mappings to allow stuff like cin( and cil( to replace text in next
-" and last parentheses pairs
+" and last parentheses pairs. Replace ( with [ or { to do the same thing for
+" bracket or brace pairs
 :onoremap in( :<c-u>normal! f(vi(<cr>
 :onoremap il( :<c-u>normal! F)vi(<cr>
+:onoremap in[ :<c-u>normal! f[vi[<cr>
+:onoremap il[ :<c-u>normal! F]vi[<cr>
+:onoremap in{ :<c-u>normal! f{vi{<cr>
+:onoremap il{ :<c-u>normal! F}vi{<cr>
 
 " Edit and source ~/.vimrc using ,ev and ,sv
 nnoremap <leader>ev :split $MYVIMRC<cr>
