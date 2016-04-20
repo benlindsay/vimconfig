@@ -222,6 +222,9 @@ inoremap jk <esc>
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+" Shortcut to run make
+nnoremap <leader>m :!make<cr>
+
 " =========== RANDOM THINGS THAT MIGHT COME IN HANDY ONE DAY ================ "
 
 " This is an alternative that also works in block mode, but the deleted 
