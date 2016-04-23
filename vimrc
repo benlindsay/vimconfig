@@ -212,11 +212,21 @@ inoremap jk <esc>
 " and last parentheses pairs. Replace ( with [ or { to do the same thing for
 " bracket or brace pairs
 :onoremap in( :<c-u>normal! f(vi(<cr>
+:onoremap in) :<c-u>normal! f(vi)<cr>
 :onoremap il( :<c-u>normal! F)vi(<cr>
+:onoremap il) :<c-u>normal! F)vi)<cr>
 :onoremap in[ :<c-u>normal! f[vi[<cr>
+:onoremap in] :<c-u>normal! f[vi]<cr>
 :onoremap il[ :<c-u>normal! F]vi[<cr>
+:onoremap il] :<c-u>normal! F]vi]<cr>
 :onoremap in{ :<c-u>normal! f{vi{<cr>
+:onoremap in} :<c-u>normal! f{vi}<cr>
 :onoremap il{ :<c-u>normal! F}vi{<cr>
+:onoremap il} :<c-u>normal! F}vi}<cr>
+:onoremap in" :<c-u>normal! f"vi"<cr>
+:onoremap il" :<c-u>normal! F"vi"<cr>
+:onoremap in' :<c-u>normal! f'vi'<cr>
+:onoremap il' :<c-u>normal! F'vi'<cr>
 
 " Edit and source ~/.vimrc using ,ev and ,sv
 nnoremap <leader>ev :split $MYVIMRC<cr>
