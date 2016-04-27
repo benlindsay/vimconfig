@@ -2,9 +2,9 @@
 
 " ========================== GENERAL SETTINGS =============================== "
 
-" Use Vim settings, rather then Vi settings (much better!). 
-" This must be first, because it changes other options as a side effect. 
-set nocompatible 
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
 
 " Use space instead of \ for leader key
 let mapleader = " "
@@ -18,8 +18,8 @@ set clipboard=exclude:.*
 " while selecting in Terminal.app or <option> in iTerm2.app
 set mouse=a
 
-" allow backspacing over everything in insert mode 
-set backspace=indent,eol,start 
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
 
 " inserts spaces for tabs
 set expandtab
@@ -38,42 +38,42 @@ autocmd FileType html setlocal shiftwidth=2 softtabstop=2
 autocmd FileType shtml setlocal shiftwidth=2 softtabstop=2
 autocmd FileType php setlocal shiftwidth=2 softtabstop=2
 
-" always set autoindenting on 
+" always set autoindenting on
 set autoindent
 
-" do not keep a backup file, use versions instead 
+" do not keep a backup file, use versions instead
 set nobackup
 
-" keep 50 lines of command line history 
+" keep 50 lines of command line history
 set history=50
 
-" show the cursor position all the time 
+" show the cursor position all the time
 set ruler
 
-" display incomplete commands 
+" display incomplete commands
 set showcmd
 
-" do incremental searching 
+" do incremental searching
 set incsearch
 
 " Show current line number and relative line numbers above and below
-set number         " shortcut is set nu 
+set number         " shortcut is set nu
 set relativenumber " shortcut is set rnu
 
-" Only do this part when compiled with support for autocommands. 
-if has("autocmd") 
+" Only do this part when compiled with support for autocommands.
+if has("autocmd")
 
-    " Enable file type detection. 
-    " Use the default filetype settings, so that mail gets 'tw' set to 72, 
-    " 'cindent' is on in C files, etc. 
-    " Also load indent files, to automatically do language-dependent indenting. 
-    filetype plugin indent on 
+    " Enable file type detection.
+    " Use the default filetype settings, so that mail gets 'tw' set to 72,
+    " 'cindent' is on in C files, etc.
+    " Also load indent files, to automatically do language-dependent indenting.
+    filetype plugin indent on
 
     " Line recommended by vim-pathogen
     execute pathogen#infect()
-    
-    " For all text files set 'textwidth' to 79 characters. 
-    autocmd FileType text setlocal textwidth=79 
+
+    " For all text files set 'textwidth' to 79 characters.
+    autocmd FileType text setlocal textwidth=79
 
     function! ResCur()
 	if line("'\"") <= line("$")
@@ -88,12 +88,12 @@ if has("autocmd")
 
 endif
 
-" Switch syntax highlighting on, when the terminal has colors 
-" Also switch on highlighting the last used search pattern. 
-if &t_Co > 2 || has("gui_running") 
- syntax on 
- set hlsearch 
-endif 
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if &t_Co > 2 || has("gui_running")
+ syntax on
+ set hlsearch
+endif
 
 " Set default color scheme
 colorscheme desert
@@ -120,6 +120,15 @@ highlight MatchParen ctermbg=white ctermfg=green
 "Automatic headers
 autocmd BufNewFile *.sh 0read ~/.vim/templates/skeleton.sh
 autocmd BufNewFile *.py 0read ~/.vim/templates/skeleton.py
+
+" Highlight Trailing whitespace
+" see http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 " Set scripts to be executable from the shell
 " au BufWritePost * if getline(1) =~ "^#!" | silent !chmod +x <afile> | endif
@@ -214,12 +223,11 @@ inoremap jk <esc>
 " thing with the end of the line. Use > and < instead of == and flip the
 " commands if you want it to be more of a 'hard' left and right
 nnoremap <silent><expr> H col('.') == indent('.')+1 ? '0' : '^'
-nnoremap <silent><expr> L col('.') == match(getline('.'), '\S\zs\s*$') ?
-                                      \ '$' : 'g_'
+nnoremap <silent><expr> L col('.') == match(getline('.'), '\S\zs\s*$') ? '$' : 'g_'
 
 " Operator mappings to allow stuff like cin( and cil( to replace text in next
 " and last parentheses pairs. Replace ( with [ or { to do the same thing for
-" bracket or brace pairs      
+" bracket or brace pairs
 :onoremap in( :<c-u>normal! f(vi(<cr>
 :onoremap in) :<c-u>normal! f(vi)<cr>
 :onoremap il( :<c-u>normal! F)vi(<cr>
@@ -260,6 +268,9 @@ nnoremap _ ddp
 " Use CTRL-u to uppercase current word (uses up marker z)
 inoremap <c-u> <esc>mzviwU`za
 
+" Remove all trailing whitespace in file with <leader>d
+:nnoremap <silent> <leader>d :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
 " Shortcuts to edit and source ~/.vimrc
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -269,10 +280,10 @@ nnoremap <leader>m :!make<cr>
 
 " =========== RANDOM THINGS THAT MIGHT COME IN HANDY ONE DAY ================ "
 
-" This is an alternative that also works in block mode, but the deleted 
-" text is lost and it only works for putting the current register. 
+" This is an alternative that also works in block mode, but the deleted
+" text is lost and it only works for putting the current register.
 "vnoremap p "_dp
 
-" Don't use Ex mode, use Q for formatting 
+" Don't use Ex mode, use Q for formatting
 " map Q gq " I haven't used this
 
