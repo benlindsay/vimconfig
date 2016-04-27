@@ -210,27 +210,12 @@ inoremap jk <esc>
 
 " Map H and L to  be strong left and right keys. i.e. H will go first to first
 " non-whitespace character of line, or to beginning of line if already there
-function! HFunc()
-    let colnum1 = col(".")
-    execute "normal! ^"
-    let colnum2 = col(".")
-    if(colnum1 == colnum2)
-        execute "normal! ^0"
-    endif
-endfunction
-
-nnoremap <silent>H :call HFunc()<cr>
-
-function! LFunc()
-    let colnum1 = col(".")
-    execute "normal! g_"
-    let colnum2 = col(".")
-    if(colnum1 == colnum2)
-        execute "normal! $"
-    endif
-endfunction
-
-nnoremap <silent>L :call LFunc() <cr>
+" H will toggle between 0 column and indent('.')+1 column. L will do a similar
+" thing with the end of the line. Use > and < instead of == and flip the
+" commands if you want it to be more of a 'hard' left and right
+nnoremap <silent><expr> H col('.') == indent('.')+1 ? '0' : '^'
+nnoremap <silent><expr> L col('.') == match(getline('.'), '\S\zs\s*$') ?
+                                      \ '$' : 'g_'
 
 " Operator mappings to allow stuff like cin( and cil( to replace text in next
 " and last parentheses pairs. Replace ( with [ or { to do the same thing for
