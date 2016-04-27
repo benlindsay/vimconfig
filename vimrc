@@ -208,9 +208,33 @@ nnoremap k gk
 " Escape insert mode by quickly hitting jk
 inoremap jk <esc>
 
+" Map H and L to  be strong left and right keys. i.e. H will go first to first
+" non-whitespace character of line, or to beginning of line if already there
+function! HFunc()
+    let colnum1 = col(".")
+    execute "normal! ^"
+    let colnum2 = col(".")
+    if(colnum1 == colnum2)
+        execute "normal! ^0"
+    endif
+endfunction
+
+nnoremap <silent>H :call HFunc()<cr>
+
+function! LFunc()
+    let colnum1 = col(".")
+    execute "normal! g_"
+    let colnum2 = col(".")
+    if(colnum1 == colnum2)
+        execute "normal! $"
+    endif
+endfunction
+
+nnoremap <silent>L :call LFunc() <cr>
+
 " Operator mappings to allow stuff like cin( and cil( to replace text in next
 " and last parentheses pairs. Replace ( with [ or { to do the same thing for
-" bracket or brace pairs
+" bracket or brace pairs      
 :onoremap in( :<c-u>normal! f(vi(<cr>
 :onoremap in) :<c-u>normal! f(vi)<cr>
 :onoremap il( :<c-u>normal! F)vi(<cr>
@@ -227,8 +251,31 @@ inoremap jk <esc>
 :onoremap il" :<c-u>normal! F"vi"<cr>
 :onoremap in' :<c-u>normal! f'vi'<cr>
 :onoremap il' :<c-u>normal! F'vi'<cr>
+:onoremap an( :<c-u>normal! f(va(<cr>
+:onoremap an) :<c-u>normal! f(va)<cr>
+:onoremap al( :<c-u>normal! F)va(<cr>
+:onoremap al) :<c-u>normal! F)va)<cr>
+:onoremap an[ :<c-u>normal! f[va[<cr>
+:onoremap an] :<c-u>normal! f[va]<cr>
+:onoremap al[ :<c-u>normal! F]va[<cr>
+:onoremap al] :<c-u>normal! F]va]<cr>
+:onoremap an{ :<c-u>normal! f{va{<cr>
+:onoremap an} :<c-u>normal! f{va}<cr>
+:onoremap al{ :<c-u>normal! F}va{<cr>
+:onoremap al} :<c-u>normal! F}va}<cr>
+:onoremap an" :<c-u>normal! f"va"<cr>
+:onoremap al" :<c-u>normal! F"va"<cr>
+:onoremap an' :<c-u>normal! f'va'<cr>
+:onoremap al' :<c-u>normal! F'va'<cr>
 
-" Edit and source ~/.vimrc using ,ev and ,sv
+" Move current line up or down with one keypress
+nnoremap - ddkP
+nnoremap _ ddp
+
+" Use CTRL-u to uppercase current word (uses up marker z)
+inoremap <c-u> <esc>mzviwU`za
+
+" Shortcuts to edit and source ~/.vimrc
 nnoremap <leader>ev :split $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
