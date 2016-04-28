@@ -166,10 +166,15 @@ nnoremap <leader>n :NERDTree .<CR>
 " Remove weird underlining behavior that shows up in Nerd Trees and html files
 :hi cursorLine cterm=NONE gui=NONE
 
-" ---------------------------  AUTOCLOSE ------------------------------------ "
+" ---------------------------- AUTOCLOSE ------------------------------------ "
 
 " Tell AutoClose to do the right thing when you hit enter between () [] or {}
 let g:AutoCloseExpandEnterOn="([{"
+
+" --------------------------- COMMENTARY ------------------------------------ "
+
+" Set commentstring for files so vim-commentary comments things correctly
+autocmd FileType c,cpp setlocal commentstring=//\ %s
 
 " ================= CUSTOM LINE NUMBER TOGGLING BEHAVIOR ==================== "
 
