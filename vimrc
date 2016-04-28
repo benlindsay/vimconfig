@@ -201,7 +201,7 @@ nnoremap <silent><leader>n :call NumberToggle()<cr>
 function! s:insert_gates()
   let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
   execute "normal! i#ifndef " . gatename
-  execute "normal! o#define " . gatename . " "
+  execute "normal! o#define " . gatename
   execute "normal! Go\n\n\n#endif // " . gatename
   normal! Gkk
 endfunction
@@ -264,6 +264,23 @@ nnoremap <silent><expr> L col('.') == match(getline('.'), '\S\zs\s*$') ? '$' : '
 " Move current line up or down with one keypress
 nnoremap - ddkP
 nnoremap _ ddp
+
+" Open multiple lines (insert empty lines) before or after current line,
+" and position cursor in the farthest line opened.
+" Adapted from http://vim.wikia.com/wiki/Insert_multiple_lines
+function! OpenLines(nrlines, dir)
+  let nrlines = a:nrlines < 2 ? 2 : a:nrlines
+  let start = line('.') + a:dir
+  call append(start, repeat([''], nrlines))
+  if a:dir < 0
+    execute "normal! " . nrlines . "k"
+  else
+    execute "normal! " . nrlines . "j"
+  endif
+endfunction
+" Mappings to open multiple lines and enter insert mode.
+nnoremap <Leader>o :<C-u>call OpenLines(v:count, 0)<CR>S
+nnoremap <Leader>O :<C-u>call OpenLines(v:count, -1)<CR>S
 
 " Use CTRL-u to uppercase current word (uses up marker z)
 inoremap <c-u> <esc>mzviwU`za
