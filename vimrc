@@ -303,6 +303,7 @@ inoremap <c-u> <esc>mzviwU`za
 
 " Shortcuts to edit and source ~/.vimrc
 nnoremap <leader>ev :split $MYVIMRC<cr>
+nnoremap <leader>Ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Shortcut to run make
