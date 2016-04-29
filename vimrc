@@ -6,6 +6,12 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" Enable file type detection.
+" Use the default filetype settings, so that mail gets 'tw' set to 72,
+" 'cindent' is on in C files, etc.
+" Also load indent files, to automatically do language-dependent indenting.
+filetype plugin indent on
+
 " Use space instead of \ for leader key
 let mapleader = " "
 
@@ -63,30 +69,19 @@ set relativenumber " shortcut is set rnu
 " Smarter scrolling
 set scrolloff=15
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
+" For all text files set 'textwidth' to 79 characters.
+autocmd FileType text setlocal textwidth=79
 
-    " Enable file type detection.
-    " Use the default filetype settings, so that mail gets 'tw' set to 72,
-    " 'cindent' is on in C files, etc.
-    " Also load indent files, to automatically do language-dependent indenting.
-    filetype plugin indent on
+function! ResCur()
+    if line("'\"") <= line("$")
+        normal! g`"
+        return 1
+    endif
+endfunction
 
-    " For all text files set 'textwidth' to 79 characters.
-    autocmd FileType text setlocal textwidth=79
-
-    function! ResCur()
-	if line("'\"") <= line("$")
-	    normal! g`"
-	    return 1
-	endif
-    endfunction
-
-    " Go to last position in file when it's opened (otherwise it starts you at
-    " the top every time)
-    autocmd BufWinEnter * call ResCur()
-
-endif
+" Go to last position in file when it's opened (otherwise it starts you at
+" the top every time)
+autocmd BufWinEnter * call ResCur()
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -134,9 +129,9 @@ autocmd BufWinLeave * call clearmatches()
 " au BufWritePost * if getline(1) =~ "^#!" | silent !chmod +x <afile> | endif
 au BufWritePost * if getline(1) =~ "^#!" | silent !chmod +x <afile>
 
-" ============ STUFF TO WORK WITH PLUGINS AND EXTERNAL PROGRAMS ============== "
+" ============ STUFF TO WORK WITH PLUGINS AND EXTERNAL PROGRAMS ============= "
 
-" ----------------------------- VUNDLE --------------------------------------- "
+" ----------------------------- VUNDLE -------------------------------------- "
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -153,20 +148,21 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 call vundle#end()
 
-" ------------------------------ CTAGS --------------------------------------- "
+" ------------------------------ CTAGS -------------------------------------- "
 
 " tell vim where tags are stored
 :set tags=./tags,./.tags;
 " make \ CTRL-] open function definition in new tab
 :nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
 
-" ----------------------------- NERDTREE ------------------------------------- "
+" ----------------------------- NERDTREE ------------------------------------ "
 
 " Open/Close Nerd Tree window with CTRL-\
 noremap <C-\> :NERDTreeToggle<CR>
 
 " Close Vim if Nerd Tree window is the last one standing
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
+            \ b:NERDTree.isTabTree()) | q | endif
 
 " Nerd Tree changes suggested in
 " http://stackoverflow.com/questions/5817730/changing-root-in-nerdtree
