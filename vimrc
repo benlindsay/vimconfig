@@ -72,9 +72,6 @@ if has("autocmd")
     " Also load indent files, to automatically do language-dependent indenting.
     filetype plugin indent on
 
-    " Line recommended by vim-pathogen
-    execute pathogen#infect()
-
     " For all text files set 'textwidth' to 79 characters.
     autocmd FileType text setlocal textwidth=79
 
@@ -138,6 +135,23 @@ autocmd BufWinLeave * call clearmatches()
 au BufWritePost * if getline(1) =~ "^#!" | silent !chmod +x <afile>
 
 " ============ STUFF TO WORK WITH PLUGINS AND EXTERNAL PROGRAMS ============== "
+
+" ----------------------------- VUNDLE --------------------------------------- "
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'tmhedberg/matchit'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Townk/vim-autoclose'
+Plugin 'alvan/vim-closetag'
+Plugin 'tpope/vim-fugitive'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-ragtag'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+call vundle#end()
 
 " ------------------------------ CTAGS --------------------------------------- "
 
