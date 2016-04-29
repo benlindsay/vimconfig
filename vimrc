@@ -290,6 +290,11 @@ endfunction
 nnoremap <Leader>o :<C-u>call OpenLines(v:count, 0)<CR>S
 nnoremap <Leader>O :<C-u>call OpenLines(v:count, -1)<CR>S
 
+" Use CTRL-D to delete text just inserted in insert mode. This is mostly so if
+" I create a new line after a comment that is automatically and unwantedly
+" commented out, I can just type CTRL-D quick to clear the comment
+inoremap <c-d> !<c-u>
+
 " Use CTRL-u to uppercase current word (uses up marker z)
 inoremap <c-u> <esc>mzviwU`za
 
