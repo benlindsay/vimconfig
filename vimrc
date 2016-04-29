@@ -60,6 +60,9 @@ set incsearch
 set number         " shortcut is set nu
 set relativenumber " shortcut is set rnu
 
+" Smarter scrolling
+set scrolloff=15
+
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
