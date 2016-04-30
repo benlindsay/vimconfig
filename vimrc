@@ -323,6 +323,9 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " Shortcut to run make
 nnoremap <leader>m :!make<cr>
 
+" Shortcut to run ctags
+nnoremap <leader>c :!ctags -R -f .tags .<cr>
+
 " =========== RANDOM THINGS THAT MIGHT COME IN HANDY ONE DAY ================ "
 
 " This is an alternative that also works in block mode, but the deleted
