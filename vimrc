@@ -73,6 +73,9 @@ set scrolloff=15
 set foldmethod=indent
 set foldlevelstart=20
 
+" Allow w and b to stop at underscores
+set iskeyword-=_
+
 " For all text files set 'textwidth' to 79 characters.
 autocmd FileType text setlocal textwidth=79
 
