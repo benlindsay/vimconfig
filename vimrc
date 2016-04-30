@@ -69,6 +69,10 @@ set relativenumber " shortcut is set rnu
 " Smarter scrolling
 set scrolloff=15
 
+" Folding
+set foldmethod=indent
+set foldlevelstart=20
+
 " For all text files set 'textwidth' to 79 characters.
 autocmd FileType text setlocal textwidth=79
 
