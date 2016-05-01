@@ -74,7 +74,7 @@ set foldmethod=indent
 set foldlevelstart=20
 
 " Turn on spell checking and give path to file of words to add to dictionary
-autocmd Filetype text set spell spelllang=en_us
+autocmd FileType tex,plaintex set spell spelllang=en_us
 set spellfile=~/.vim/spell/en.utf-8.add
 
 " For all text files set 'textwidth' to 79 characters.
