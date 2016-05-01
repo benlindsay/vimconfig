@@ -139,22 +139,27 @@ au BufWritePost * if getline(1) =~ "^#!" | silent !chmod +x <afile>
 
 " ============ STUFF TO WORK WITH PLUGINS AND EXTERNAL PROGRAMS ============= "
 
-" ----------------------------- VUNDLE -------------------------------------- "
+" ----------------------------- VIM-PLUG ------------------------------------ "
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
-Plugin 'tmhedberg/matchit'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Townk/vim-autoclose'
-Plugin 'alvan/vim-closetag'
-Plugin 'tpope/vim-fugitive'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-ragtag'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
-call vundle#end()
+" Load vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/bundle')
+Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'tmhedberg/matchit'
+Plug 'scrooloose/nerdtree'
+Plug 'Townk/vim-autoclose'
+Plug 'alvan/vim-closetag'
+Plug 'tpope/vim-fugitive'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+call plug#end()
 
 " ------------------------------ CTAGS -------------------------------------- "
 
