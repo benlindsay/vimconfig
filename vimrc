@@ -321,9 +321,10 @@ inoremap <c-u> <esc>mzviwU`za
 " Remove all trailing whitespace in file with <leader>d
 :nnoremap <silent> <leader>d :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
-" Shortcuts to edit and source ~/.vimrc
-nnoremap <leader>ev :split $MYVIMRC<cr>
-nnoremap <leader>Ev :vsplit $MYVIMRC<cr>
+" Shortcuts to edit and source ~/.vimrc. The readlink stuff opens the absolute
+" path of the file, following symlinks
+nnoremap <leader>ev :split `readlink -f $MYVIMRC`<cr>
+nnoremap <leader>Ev :vsplit `readlink -f $MYVIMRC`<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Shortcut to run make
