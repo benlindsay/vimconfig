@@ -186,9 +186,6 @@ set autochdir
 " make sure the working directory is set correctly
 let NERDTreeChDirMode=2
 
-" \n opens nerdtree at current file's directory
-nnoremap <leader>n :NERDTree .<CR>
-
 " Remove weird underlining behavior that shows up in Nerd Trees and html files
 :hi cursorLine cterm=NONE gui=NONE
 
