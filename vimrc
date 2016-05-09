@@ -47,6 +47,14 @@ autocmd FileType php setlocal shiftwidth=2 softtabstop=2
 " always set autoindenting on
 set autoindent
 
+" indent continued line to align with parentheses.
+" tip from http://stackoverflow.com/a/11986057/2680824
+set cinoptions+=(0
+
+" indent public and private keywords by 1 space in c++ classes
+" variation of tip from http://stackoverflow.com/a/12353180/2680824
+set cinoptions+=g1,h1
+
 " do not keep a backup file, use versions instead
 set nobackup
 
