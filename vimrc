@@ -43,6 +43,7 @@ autocmd FileType sh setlocal shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2
 autocmd FileType shtml setlocal shiftwidth=2 softtabstop=2
 autocmd FileType php setlocal shiftwidth=2 softtabstop=2
+autocmd FileType tex setlocal shiftwidth=2 softtabstop=2
 
 " always set autoindenting on
 set autoindent
