@@ -43,6 +43,7 @@ autocmd FileType sh setlocal shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2
 autocmd FileType shtml setlocal shiftwidth=2 softtabstop=2
 autocmd FileType php setlocal shiftwidth=2 softtabstop=2
+autocmd FileType tex setlocal shiftwidth=2 softtabstop=2
 
 " always set autoindenting on
 set autoindent
@@ -85,8 +86,9 @@ set foldlevelstart=20
 autocmd FileType tex,plaintex set spell spelllang=en_us
 set spellfile=~/.vim/spell/en.utf-8.add
 
-" For all text files set 'textwidth' to 79 characters.
-autocmd FileType text setlocal textwidth=79
+" For all text files and tex files, set 'textwidth' to 79 characters.
+" This enforces 79 character width, or really 80 including newline character
+autocmd FileType text,tex setlocal textwidth=79
 
 function! ResCur()
     if line("'\"") <= line("$")
@@ -157,17 +159,20 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/bundle')
-Plug 'LaTeX-Box-Team/LaTeX-Box'
-Plug 'tmhedberg/matchit'
-Plug 'scrooloose/nerdtree'
-Plug 'Townk/vim-autoclose'
-Plug 'alvan/vim-closetag'
-Plug 'tpope/vim-fugitive'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'LaTeX-Box-Team/LaTeX-Box'         " LaTeX stuff
+Plug 'tmhedberg/matchit'                " Improved matching for % key
+Plug 'scrooloose/nerdtree'              " Improved file navigation
+Plug 'Townk/vim-autoclose'              " Automatically close pairs
+Plug 'alvan/vim-closetag'               " Like Autoclose for html tags
+Plug 'tpope/vim-fugitive'               " Use Git from within Vim
+Plug 'terryma/vim-multiple-cursors'     " Select and edit multiple words
+Plug 'tpope/vim-surround'               " Surround region with character pair
+Plug 'tpope/vim-commentary'             " Comment lines using gc<object>
+Plug 'ConradIrwin/vim-bracketed-paste'  " Seamless pasting from clipboard
+Plug 'MarcWeber/vim-addon-mw-utils'     " Required for snipmate
+Plug 'tomtom/tlib_vim'                  " Required for snipmate
+Plug 'garbas/vim-snipmate'              " Framwork for inserting snippets
+Plug 'honza/vim-snippets'               " Predefined snippets for snipmate
 call plug#end()
 
 " ------------------------------ CTAGS -------------------------------------- "
@@ -207,6 +212,15 @@ let g:AutoCloseExpandEnterOn="([{"
 
 " Set commentstring for files so vim-commentary comments things correctly
 autocmd FileType c,cpp setlocal commentstring=//\ %s
+
+" --------------------------- LATEX-BOX ------------------------------------- "
+
+let g:LatexBox_Folding=1
+
+" --------------------------- AUTOCLOSE ------------------------------------- "
+
+" Tell Autoclose to autoclose $$ pairs in tex files in addition to defaults
+autocmd FileType tex let g:AutoClosePairs = "` \" [] \' () {} $"
 
 " ================= CUSTOM LINE NUMBER TOGGLING BEHAVIOR ==================== "
 
@@ -330,10 +344,9 @@ inoremap <c-u> <esc>mzviwU`za
 " Remove all trailing whitespace in file with <leader>d
 :nnoremap <silent> <leader>d :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
-" Shortcuts to edit and source ~/.vimrc. The readlink stuff opens the absolute
-" path of the file, following symlinks
-nnoremap <leader>ev :split `readlink -f $MYVIMRC`<cr>
-nnoremap <leader>Ev :vsplit `readlink -f $MYVIMRC`<cr>
+" Shortcuts to edit and source ~/.vimrc.
+nnoremap <leader>ev :split $MYVIMRC<cr>
+nnoremap <leader>Ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Shortcut to run make
@@ -350,4 +363,3 @@ nnoremap <leader>c :!ctags -R -f .tags .<cr>
 
 " Don't use Ex mode, use Q for formatting
 " map Q gq " I haven't used this
-
