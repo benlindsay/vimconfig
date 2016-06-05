@@ -215,7 +215,12 @@ autocmd FileType c,cpp setlocal commentstring=//\ %s
 
 " --------------------------- LATEX-BOX ------------------------------------- "
 
+" Turn on folding by sections
 let g:LatexBox_Folding=1
+" Open quickfix window on warning or error, but leave cursor in current window
+let g:LatexBox_quickfix=2
+" Automatically jump to first error after running latexmk
+let g:LatexBox_autojump=1
 
 " --------------------------- AUTOCLOSE ------------------------------------- "
 
