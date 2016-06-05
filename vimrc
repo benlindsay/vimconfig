@@ -221,6 +221,8 @@ let g:LatexBox_Folding=1
 let g:LatexBox_quickfix=2
 " Automatically jump to first error after running latexmk
 let g:LatexBox_autojump=1
+" Table of contents width
+let g:LatexBox_split_width=50
 
 " --------------------------- AUTOCLOSE ------------------------------------- "
 
@@ -347,7 +349,10 @@ inoremap <c-d> !<c-u>
 inoremap <c-u> <esc>mzviwU`za
 
 " Remove all trailing whitespace in file with <leader>d
-:nnoremap <silent> <leader>d :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+nnoremap <silent> <leader>d :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
+" ':vh' expands to ':vert help' to open help window in vertical split
+cnoremap vh vert help
 
 " Shortcuts to edit and source ~/.vimrc.
 nnoremap <leader>ev :split $MYVIMRC<cr>
