@@ -281,6 +281,26 @@ autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
 nnoremap j gj
 nnoremap k gk
 
+" Tell zt to put current line at top regardless of scrolloff setting
+function! ToTop()
+  let s:so=&scrolloff
+  set scrolloff=0
+  normal! zt
+  exec "normal! " . s:so . "j"
+  let &scrolloff=s:so
+endfunction
+nnoremap zt :call ToTop()<cr>
+
+" Tell zb to put current line at bottom regardless of scrolloff setting
+function! ToBottom()
+  let s:so=&scrolloff
+  set scrolloff=0
+  normal! zb
+  exec "normal! " . s:so . "k"
+  let &scrolloff=s:so
+endfunction
+nnoremap zb :call ToBottom()<cr>
+
 " Escape insert mode by quickly hitting jk
 inoremap jk <esc>
 
