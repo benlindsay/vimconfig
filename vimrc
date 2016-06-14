@@ -78,6 +78,10 @@ set relativenumber " shortcut is set rnu
 " Smarter scrolling
 set scrolloff=15
 
+" Make vertical and horizontal splits open to the right and below, respectively
+set splitright
+set splitbelow
+
 " Folding
 set foldmethod=indent
 set foldlevelstart=20
@@ -178,9 +182,13 @@ call plug#end()
 " ------------------------------ CTAGS -------------------------------------- "
 
 " tell vim where tags are stored
-:set tags=./tags,./.tags;
-" make \ CTRL-] open function definition in new tab
-:nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+set tags=./tags,./.tags;
+" <leader><CTRL-]> to open function definition in vertical split
+nnoremap <silent><leader><c-]> <c-w>v<c-]>
+" <leader>s<CTRL-]> to open function definition in horizontal split
+nnoremap <silent><leader>s<c-]> <c-w>S<c-]>
+" <leader>t<CTRL-]> to open function definition in new tab
+nnoremap <silent><leader>t<c-]> <c-w><c-]><c-w>T
 
 " ----------------------------- NERDTREE ------------------------------------ "
 
