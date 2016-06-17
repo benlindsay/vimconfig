@@ -212,6 +212,11 @@ let NERDTreeChDirMode=2
 " Remove weird underlining behavior that shows up in Nerd Trees and html files
 :hi cursorLine cterm=NONE gui=NONE
 
+" ---------------------------- FUGITIVE  ------------------------------------ "
+
+" Force vertical split for :Gdiff
+set diffopt+=vertical
+
 " ---------------------------- AUTOCLOSE ------------------------------------ "
 
 " Tell AutoClose to do the right thing when you hit enter between () [] or {}
