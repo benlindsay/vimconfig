@@ -96,10 +96,10 @@ set spellfile=~/.vim/spell/en.utf-8.add
 autocmd FileType text,tex setlocal textwidth=79
 
 function! ResCur()
-    if line("'\"") <= line("$")
-        normal! g`"
-        return 1
-    endif
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
 endfunction
 
 " Go to last position in file when it's opened (otherwise it starts you at
@@ -109,8 +109,8 @@ autocmd BufWinEnter * call ResCur()
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
- syntax on
- set hlsearch
+  syntax on
+  set hlsearch
 endif
 
 " Set default color scheme
@@ -118,7 +118,7 @@ colorscheme desert
 
 " Custom color scheme for vimdiff
 if &diff
-    colorscheme vimdiffcolors
+  colorscheme vimdiffcolors
 endif
 
 " Set coloring of line numbers on left
@@ -246,20 +246,20 @@ autocmd FileType tex let g:AutoClosePairs = "` \" [] \' () {} $"
 " ================= CUSTOM LINE NUMBER TOGGLING BEHAVIOR ==================== "
 
 function! NumberToggle()
-    if(&relativenumber == 1)
-        " If we have relative numbers, turn off numbers
-        set nonumber
-        set norelativenumber
-    elseif(&number == 0)
-        " If we have no numbers, turn on absolute numbers
-        set number
-        set norelativenumber
-    else
-        " If we have absolute numbers on and relative numbers off,
-        " turn on relative numbers
-        set number
-        set relativenumber
-    endif
+  if(&relativenumber == 1)
+    " If we have relative numbers, turn off numbers
+    set nonumber
+    set norelativenumber
+  elseif(&number == 0)
+    " If we have no numbers, turn on absolute numbers
+    set number
+    set norelativenumber
+  else
+    " If we have absolute numbers on and relative numbers off,
+    " turn on relative numbers
+    set number
+    set relativenumber
+  endif
 endfunc
 
 "Use \n to toggle between relative #'s -> no #'s -> absolute #'s -> rel...
