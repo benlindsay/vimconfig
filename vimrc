@@ -14,6 +14,7 @@ filetype plugin indent on
 
 " Use space instead of \ for leader key
 let mapleader = " "
+let maplocalleader = " "
 
 " This line helps avoid long vim startup times related to setting up the
 " clipboard. You can look at startup times using `vim --startuptime out.log`
@@ -177,7 +178,7 @@ Plug 'ConradIrwin/vim-bracketed-paste'  " Seamless pasting from clipboard
 Plug 'MarcWeber/vim-addon-mw-utils'     " Required for snipmate
 Plug 'tomtom/tlib_vim'                  " Required for snipmate
 Plug 'garbas/vim-snipmate'              " Framwork for inserting snippets
-Plug 'honza/vim-snippets'               " Predefined snippets for snipmate
+Plug 'benlindsay/vim-snippets'          " Predefined snippets for snipmate
 call plug#end()
 
 " ------------------------------ CTAGS -------------------------------------- "
