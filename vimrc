@@ -210,7 +210,7 @@ set autochdir
 let NERDTreeChDirMode=2
 
 " Remove weird underlining behavior that shows up in Nerd Trees and html files
-:hi cursorLine cterm=NONE gui=NONE
+hi cursorLine cterm=NONE gui=NONE
 
 " ---------------------------- FUGITIVE  ------------------------------------ "
 
@@ -320,38 +320,38 @@ nnoremap <silent><expr> L col('.') == match(getline('.'), '\S\zs\s*$') ? '$' : '
 " Operator mappings to allow stuff like cin( and cil( to replace text in next
 " and last parentheses pairs. Replace ( with [ or { to do the same thing for
 " bracket or brace pairs
-:onoremap in( :<c-u>normal! f(vi(<cr>
-:onoremap in) :<c-u>normal! f(vi)<cr>
-:onoremap il( :<c-u>normal! F)vi(<cr>
-:onoremap il) :<c-u>normal! F)vi)<cr>
-:onoremap in[ :<c-u>normal! f[vi[<cr>
-:onoremap in] :<c-u>normal! f[vi]<cr>
-:onoremap il[ :<c-u>normal! F]vi[<cr>
-:onoremap il] :<c-u>normal! F]vi]<cr>
-:onoremap in{ :<c-u>normal! f{vi{<cr>
-:onoremap in} :<c-u>normal! f{vi}<cr>
-:onoremap il{ :<c-u>normal! F}vi{<cr>
-:onoremap il} :<c-u>normal! F}vi}<cr>
-:onoremap in" :<c-u>normal! f"vi"<cr>
-:onoremap il" :<c-u>normal! F"vi"<cr>
-:onoremap in' :<c-u>normal! f'vi'<cr>
-:onoremap il' :<c-u>normal! F'vi'<cr>
-:onoremap an( :<c-u>normal! f(va(<cr>
-:onoremap an) :<c-u>normal! f(va)<cr>
-:onoremap al( :<c-u>normal! F)va(<cr>
-:onoremap al) :<c-u>normal! F)va)<cr>
-:onoremap an[ :<c-u>normal! f[va[<cr>
-:onoremap an] :<c-u>normal! f[va]<cr>
-:onoremap al[ :<c-u>normal! F]va[<cr>
-:onoremap al] :<c-u>normal! F]va]<cr>
-:onoremap an{ :<c-u>normal! f{va{<cr>
-:onoremap an} :<c-u>normal! f{va}<cr>
-:onoremap al{ :<c-u>normal! F}va{<cr>
-:onoremap al} :<c-u>normal! F}va}<cr>
-:onoremap an" :<c-u>normal! f"va"<cr>
-:onoremap al" :<c-u>normal! F"va"<cr>
-:onoremap an' :<c-u>normal! f'va'<cr>
-:onoremap al' :<c-u>normal! F'va'<cr>
+onoremap in( :<c-u>normal! f(vi(<cr>
+onoremap in) :<c-u>normal! f(vi)<cr>
+onoremap il( :<c-u>normal! F)vi(<cr>
+onoremap il) :<c-u>normal! F)vi)<cr>
+onoremap in[ :<c-u>normal! f[vi[<cr>
+onoremap in] :<c-u>normal! f[vi]<cr>
+onoremap il[ :<c-u>normal! F]vi[<cr>
+onoremap il] :<c-u>normal! F]vi]<cr>
+onoremap in{ :<c-u>normal! f{vi{<cr>
+onoremap in} :<c-u>normal! f{vi}<cr>
+onoremap il{ :<c-u>normal! F}vi{<cr>
+onoremap il} :<c-u>normal! F}vi}<cr>
+onoremap in" :<c-u>normal! f"vi"<cr>
+onoremap il" :<c-u>normal! F"vi"<cr>
+onoremap in' :<c-u>normal! f'vi'<cr>
+onoremap il' :<c-u>normal! F'vi'<cr>
+onoremap an( :<c-u>normal! f(va(<cr>
+onoremap an) :<c-u>normal! f(va)<cr>
+onoremap al( :<c-u>normal! F)va(<cr>
+onoremap al) :<c-u>normal! F)va)<cr>
+onoremap an[ :<c-u>normal! f[va[<cr>
+onoremap an] :<c-u>normal! f[va]<cr>
+onoremap al[ :<c-u>normal! F]va[<cr>
+onoremap al] :<c-u>normal! F]va]<cr>
+onoremap an{ :<c-u>normal! f{va{<cr>
+onoremap an} :<c-u>normal! f{va}<cr>
+onoremap al{ :<c-u>normal! F}va{<cr>
+onoremap al} :<c-u>normal! F}va}<cr>
+onoremap an" :<c-u>normal! f"va"<cr>
+onoremap al" :<c-u>normal! F"va"<cr>
+onoremap an' :<c-u>normal! f'va'<cr>
+onoremap al' :<c-u>normal! F'va'<cr>
 
 " Move current line up or down with one keypress
 nnoremap - ddkP
