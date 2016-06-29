@@ -105,7 +105,7 @@ endfunction
 
 " Go to last position in file when it's opened (otherwise it starts you at
 " the top every time)
-autocmd BufWinEnter * call ResCur()
+autocmd BufRead * call ResCur()
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -179,6 +179,7 @@ Plug 'MarcWeber/vim-addon-mw-utils'     " Required for snipmate
 Plug 'tomtom/tlib_vim'                  " Required for snipmate
 Plug 'garbas/vim-snipmate'              " Framwork for inserting snippets
 Plug 'benlindsay/vim-snippets'          " Predefined snippets for snipmate
+Plug 'benlindsay/vim-template'          " Template plugin
 call plug#end()
 
 " ------------------------------ CTAGS -------------------------------------- "
@@ -243,6 +244,11 @@ let g:LatexBox_split_width=50
 
 " Tell Autoclose to autoclose $$ pairs in tex files in addition to defaults
 autocmd FileType tex let g:AutoClosePairs = "` \" [] \' () {} $"
+
+" --------------------------- TEMPLATE -------------------------------------- "
+
+let g:templates_directory=['~/.vim/templates']
+let g:templates_name_prefix='template'
 
 " ================= CUSTOM LINE NUMBER TOGGLING BEHAVIOR ==================== "
 
