@@ -172,7 +172,6 @@ nnoremap <leader>w :call ToggleHighlightWhitespace()<cr>
 " --------------------------------------------------------------------------- "
 
 " Set scripts to be executable from the shell
-" au BufWritePost * if getline(1) =~ "^#!" | silent !chmod +x <afile> | endif
 au BufWritePost * if getline(1) =~ "^#!" | silent !chmod +x <afile>
 
 " ============ STUFF TO WORK WITH PLUGINS AND EXTERNAL PROGRAMS ============= "
