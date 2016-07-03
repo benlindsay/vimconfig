@@ -2,3 +2,23 @@
 snippet white
 	plt.figure().patch.set_facecolor('white')
 	${0}
+snippet main
+	def main(${4}):
+		${0}
+		return
+
+	if __name__ == "__main__":
+		minargs = ${1:0}
+		if len(sys.argv[1:]) < minargs:
+			print "Usage:", sys.argv[0], "${2:[args]}"
+			exit(1)
+		else:
+			main(${3})
+snippet np
+	import numpy as np
+snippet plt
+	import matplotlib.pyplot as plt
+snippet sys
+	import sys
+snippet os
+	import os

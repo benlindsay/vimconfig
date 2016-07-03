@@ -136,10 +136,6 @@ highlight ColorColumn ctermbg=lightgrey
 " Bold matching parenthesis or brace or bracket
 highlight MatchParen ctermbg=white ctermfg=green
 
-"Automatic headers
-autocmd BufNewFile *.sh 0read ~/.vim/templates/skeleton.sh
-autocmd BufNewFile *.py 0read ~/.vim/templates/skeleton.py
-
 " Highlight Trailing whitespace
 " see http://vim.wikia.com/wiki/Highlight_unwanted_spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -179,7 +175,7 @@ Plug 'MarcWeber/vim-addon-mw-utils'     " Required for snipmate
 Plug 'tomtom/tlib_vim'                  " Required for snipmate
 Plug 'garbas/vim-snipmate'              " Framwork for inserting snippets
 Plug 'benlindsay/vim-snippets'          " Predefined snippets for snipmate
-Plug 'benlindsay/vim-template'          " Template plugin
+Plug 'noahfrederick/vim-skeleton'
 call plug#end()
 
 " ------------------------------ CTAGS -------------------------------------- "
@@ -245,10 +241,51 @@ let g:LatexBox_split_width=50
 " Tell Autoclose to autoclose $$ pairs in tex files in addition to defaults
 autocmd FileType tex let g:AutoClosePairs = "` \" [] \' () {} $"
 
-" --------------------------- TEMPLATE -------------------------------------- "
+" --------------------------- SNIPMATE -------------------------------------- "
 
-let g:templates_directory=['~/.vim/templates']
-let g:templates_name_prefix='template'
+" Variables that can be expanded in snippets (or elsewhere)
+let g:snips_author = "Ben Lindsay"
+let g:snips_email = "benjlindsay@gmail.com"
+let g:snips_github = "benlindsay"
+
+" --------------------------- SKELETON -------------------------------------- "
+
+" If I have a template file called skel.ext and skel.ext.other, opening
+" foo.ext loads skel.ext. If I type `:SI other`, then skel.ext.other will load
+" skel.ext.other, allowing multiple templates for a single extension
+command! -nargs=? SI call MySkelInsert(<f-args>)
+function! MySkelInsert(...)
+  if(a:0 ==# 0)
+    let l:extra_ext = ''
+  else
+    let l:extra_ext = '.' . a:1
+  endif
+  execute ':SkelInsert! skel.' . expand('%:e') . l:extra_ext
+endfunction
+
+" Allow custom variables in skel.ext files. For example, @USER@ will now
+" expand to whatever is held in g:snips_author
+let g:skeleton_replacements = {}
+
+" Author name
+function! g:skeleton_replacements.USER()
+  return g:snips_author
+endfunction
+
+" Author email
+function! g:skeleton_replacements.EMAIL()
+  return g:snips_email
+endfunction
+
+" Github user name
+function! g:skeleton_replacements.GITHUB()
+  return g:snips_github
+endfunction
+
+" Header guard for .h or .hpp files
+function! g:skeleton_replacements.GUARD()
+  return substitute(toupper(expand("%:t")), "\\.", "_", "g")
+endfunction
 
 " ================= CUSTOM LINE NUMBER TOGGLING BEHAVIOR ==================== "
 
@@ -271,20 +308,6 @@ endfunc
 
 "Use \n to toggle between relative #'s -> no #'s -> absolute #'s -> rel...
 nnoremap <silent><leader>n :call NumberToggle()<cr>
-
-" ======================== AUTOMATIC C++ FORMATTING ========================= "
-
-" Automatic header guards on new .h or .hpp file creation
-" Adapted from:
-" http://vim.wikia.com/wiki/Automatic_insertion_of_C/C%2B%2B_header_gates
-function! s:insert_gates()
-  let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
-  execute "normal! i#ifndef " . gatename
-  execute "normal! o#define " . gatename
-  execute "normal! Go\n\n\n#endif // " . gatename
-  normal! Gkk
-endfunction
-autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
 
 " ========================== OTHER KEY MAPPINGS ============================= "
 

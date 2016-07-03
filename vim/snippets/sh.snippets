@@ -1,0 +1,9 @@
+snippet args
+	minargs=${1:0}
+
+	if [ "$#" -lt "$minargs" ]; then
+		echo "Usage: $0 ${2:[args]}"
+		exit 1
+	fi
+
+	${0}
