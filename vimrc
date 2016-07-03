@@ -137,13 +137,39 @@ highlight ColorColumn ctermbg=lightgrey
 highlight MatchParen ctermbg=white ctermfg=green
 
 " Highlight Trailing whitespace
-" see http://vim.wikia.com/wiki/Highlight_unwanted_spaces
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
+" see http://vi.stackexchange.com/a/8564/5043
+" --------------------------------------------------------------------------- "
+let g:toggleHighlightWhitespace = 1
+function! ToggleHighlightWhitespace()
+  let g:toggleHighlightWhitespace = 1 - g:toggleHighlightWhitespace
+  call RefreshHighlightWhitespace()
+endfunction
+
+function! RefreshHighlightWhitespace()
+  if g:toggleHighlightWhitespace == 1 " normal action, do the hi
+    highlight ExtraWhitespace ctermbg=red guibg=red
+    match ExtraWhitespace /\s\+$/
+    augroup HighLightWhitespace
+      autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+      autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+      autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+      autocmd BufWinLeave * call clearmatches()
+    augroup END
+  else " clear whitespace highlighting
+    call clearmatches()
+    autocmd! HighLightWhitespace BufWinEnter
+    autocmd! HighLightWhitespace InsertEnter
+    autocmd! HighLightWhitespace InsertLeave
+    autocmd! HighLightWhitespace BufWinLeave
+  endif
+endfunction
+
+autocmd BufWinEnter * call RefreshHighlightWhitespace()
+autocmd InsertEnter * call RefreshHighlightWhitespace()
+autocmd InsertLeave * call RefreshHighlightWhitespace()
+autocmd BufWinLeave * call RefreshHighlightWhitespace()
+nnoremap <leader>w :call ToggleHighlightWhitespace()<cr>
+" --------------------------------------------------------------------------- "
 
 " Set scripts to be executable from the shell
 " au BufWritePost * if getline(1) =~ "^#!" | silent !chmod +x <afile> | endif
