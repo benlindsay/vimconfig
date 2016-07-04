@@ -217,7 +217,7 @@ nnoremap <silent><leader>t<c-]> <c-w><c-]><c-w>T
 " ----------------------------- NERDTREE ------------------------------------ "
 
 " Open/Close Nerd Tree window with CTRL-\
-noremap <C-\> :NERDTreeToggle<CR>
+noremap <c-\> :NERDTreeToggle<cr>
 
 " Close Vim if Nerd Tree window is the last one standing
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") &&
@@ -384,8 +384,8 @@ inoremap jk <esc>
 " H will toggle between 0 column and indent('.')+1 column. L will do a similar
 " thing with the end of the line. Use > and < instead of == and flip the
 " commands if you want it to be more of a 'hard' left and right
-nnoremap <silent><expr> H col('.') == indent('.')+1 ? '0' : '^'
-nnoremap <silent><expr> L col('.') == match(getline('.'), '\S\zs\s*$') ? '$' : 'g_'
+nnoremap <silent><expr>H col('.') == indent('.')+1 ? '0' : '^'
+nnoremap <silent><expr>L col('.') == match(getline('.'), '\S\zs\s*$') ? '$' : 'g_'
 
 " Operator mappings to allow stuff like cin( and cil( to replace text in next
 " and last parentheses pairs. Replace ( with [ or { to do the same thing for
@@ -441,8 +441,8 @@ function! OpenLines(nrlines, dir)
   endif
 endfunction
 " Mappings to open multiple lines and enter insert mode.
-nnoremap <Leader>o :<C-u>call OpenLines(v:count, 0)<CR>S
-nnoremap <Leader>O :<C-u>call OpenLines(v:count, -1)<CR>S
+nnoremap <leader>o :<c-u>call OpenLines(v:count, 0)<cr>S
+nnoremap <leader>O :<c-u>call OpenLines(v:count, -1)<cr>S
 
 " Use CTRL-D to delete text just inserted in insert mode. This is mostly so if
 " I create a new line after a comment that is automatically and unwantedly
@@ -453,7 +453,7 @@ inoremap <c-d> !<c-u>
 inoremap <c-u> <esc>mzviwU`za
 
 " Remove all trailing whitespace in file with <leader>d
-nnoremap <silent> <leader>d :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+nnoremap <silent><leader>d :let _s=@/<bar>:%s/\s\+$//e<bar>:let @/=_s<bar>:nohl<cr>
 
 " ':vh' expands to ':vert help' to open help window in vertical split
 cnoremap vh vert help
