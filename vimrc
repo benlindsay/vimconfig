@@ -336,10 +336,25 @@ nnoremap <silent><leader>n :call NumberToggle()<cr>
 
 " ========================== OTHER KEY MAPPINGS ============================= "
 
-" Tell j and k to navigate displayed lines instead of actual lines so that long
-" wrapped around lines are more navigable
-nnoremap j gj
-nnoremap k gk
+" Smart j and k:
+" If no number is used before j or k, navigate displayed lines
+"   instead of actual lines for smoother navigation of wrapped lines
+" If a number is used before j or k, navigate actual lines to enable precise
+"   navigation based on relative line numbers regardless of line wrapping
+function! UpDownFunction(nlines, dir)
+  if(a:dir ==# 0)
+    let l:dirkey = 'j'
+  else
+    let l:dirkey = 'k'
+  endif
+  if(a:nlines ==# 0)
+    exec "normal! g" . l:dirkey
+  else
+    exec "normal! " . a:nlines . l:dirkey
+  endif
+endfunction
+nnoremap <silent>j :<c-u>call UpDownFunction(v:count, 0)<cr>
+nnoremap <silent>k :<c-u>call UpDownFunction(v:count, 1)<cr>
 
 " Tell zt to put current line at top regardless of scrolloff setting
 function! ToTop()
