@@ -165,8 +165,6 @@ function! RefreshHighlightWhitespace()
 endfunction
 
 autocmd BufWinEnter * call RefreshHighlightWhitespace()
-autocmd InsertEnter * call RefreshHighlightWhitespace()
-autocmd InsertLeave * call RefreshHighlightWhitespace()
 autocmd BufWinLeave * call RefreshHighlightWhitespace()
 nnoremap <leader>w :call ToggleHighlightWhitespace()<cr>
 " --------------------------------------------------------------------------- "
