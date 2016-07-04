@@ -354,25 +354,23 @@ endfunction
 nnoremap <silent>j :<c-u>call UpDownFunction(v:count, 0)<cr>
 nnoremap <silent>k :<c-u>call UpDownFunction(v:count, 1)<cr>
 
-" Tell zt to put current line at top regardless of scrolloff setting
-function! ToTop()
+" Tell zt and zb to put current line at top or bottom regardless of scrolloff
+function! ToTopOrBottom(dir)
   let s:so=&scrolloff
   set scrolloff=0
-  normal! zt
-  exec "normal! " . s:so . "j"
+  if(a:dir ==# 0)
+    let l:tb = 't'
+    let l:jk = 'j'
+  else
+    let l:tb = 'b'
+    let l:jk = 'k'
+  endif
+  exec "normal! z" . l:tb
+  exec "normal! " . s:so . l:jk
   let &scrolloff=s:so
 endfunction
-nnoremap zt :call ToTop()<cr>
-
-" Tell zb to put current line at bottom regardless of scrolloff setting
-function! ToBottom()
-  let s:so=&scrolloff
-  set scrolloff=0
-  normal! zb
-  exec "normal! " . s:so . "k"
-  let &scrolloff=s:so
-endfunction
-nnoremap zb :call ToBottom()<cr>
+nnoremap zt :call ToTopOrBottom(0)<cr>
+nnoremap zb :call ToTopOrBottom(1)<cr>
 
 " Escape insert mode by quickly hitting jk
 inoremap jk <esc>
