@@ -198,7 +198,7 @@ Plug 'MarcWeber/vim-addon-mw-utils'     " Required for snipmate
 Plug 'tomtom/tlib_vim'                  " Required for snipmate
 Plug 'garbas/vim-snipmate'              " Framwork for inserting snippets
 Plug 'benlindsay/vim-snippets'          " Predefined snippets for snipmate
-Plug 'noahfrederick/vim-skeleton'
+Plug 'noahfrederick/vim-skeleton'       " Loads templates by file extension
 call plug#end()
 
 " ------------------------------ CTAGS -------------------------------------- "
