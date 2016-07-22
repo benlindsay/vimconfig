@@ -91,6 +91,8 @@ set foldlevelstart=20
 " Turn on spell checking and give path to file of words to add to dictionary
 autocmd FileType tex,plaintex set spell spelllang=en_us
 set spellfile=~/.vim/spell/en.utf-8.add
+" Turn off capitalization checking
+set spellcapcheck=
 
 " For all text files and tex files, set 'textwidth' to 79 characters.
 " This enforces 79 character width, or really 80 including newline character
