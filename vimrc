@@ -377,6 +377,9 @@ nnoremap zb :call ToTopOrBottom(1)<cr>
 " Escape insert mode by quickly hitting jk
 inoremap jk <esc>
 
+" Prevent accidentally pressing q: from doing weird stuff
+nnoremap q: :echo 'Use :q to quit, not q:'<cr>
+
 " Map H and L to  be strong left and right keys. i.e. H will go first to first
 " non-whitespace character of line, or to beginning of line if already there
 " H will toggle between 0 column and indent('.')+1 column. L will do a similar
