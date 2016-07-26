@@ -245,6 +245,11 @@ set diffopt+=vertical
 " Tell AutoClose to do the right thing when you hit enter between () [] or {}
 let g:AutoCloseExpandEnterOn="([{"
 
+" ----------------------------- CLOSETAG ------------------------------------ "
+
+" Tell CloseTag to do its autoclose stuff in markdown files as well
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.md,*.markdown"
+
 " --------------------------- COMMENTARY ------------------------------------ "
 
 " Set commentstring for files so vim-commentary comments things correctly
