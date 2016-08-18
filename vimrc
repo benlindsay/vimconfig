@@ -393,6 +393,12 @@ nnoremap q: :echo 'Use :q to quit, not q:'<cr>
 nnoremap <silent><expr>H col('.') == indent('.')+1 ? '0' : '^'
 nnoremap <silent><expr>L col('.') == match(getline('.'), '\S\zs\s*$') ? '$' : 'g_'
 
+" Map S to rewrite from cursor to end of line instead of whole line
+nnoremap S Da
+
+" Map Y to yank from cursor to end of line
+nnoremap Y y$
+
 " Operator mappings to allow stuff like cin( and cil( to replace text in next
 " and last parentheses pairs. Replace ( with [ or { to do the same thing for
 " bracket or brace pairs
