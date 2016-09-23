@@ -89,14 +89,14 @@ set foldmethod=indent
 set foldlevelstart=20
 
 " Turn on spell checking and give path to file of words to add to dictionary
-nnoremap <leader>sp :set spell spelllang=en_us<cr>
+nnoremap <leader>sp :set spell! spelllang=en_us<cr>
 set spellfile=.en.utf-8.add,~/.vim/spell/en.utf-8.add
 " Turn off capitalization checking
 set spellcapcheck=
 
-" For all text files and tex files, set 'textwidth' to 79 characters.
-" This enforces 79 character width, or really 80 including newline character
-autocmd FileType text,tex setlocal textwidth=79
+" Tell rewrapping operations (i.e. gqip or gqq) to break lines to max 80
+" characters, but no automatic wrapping when typing over the 80 char line
+set textwidth=0 formatoptions=cq wrapmargin=0
 
 function! ResCur()
   if line("'\"") <= line("$")
