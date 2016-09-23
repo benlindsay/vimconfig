@@ -89,8 +89,8 @@ set foldmethod=indent
 set foldlevelstart=20
 
 " Turn on spell checking and give path to file of words to add to dictionary
-autocmd FileType tex,plaintex set spell spelllang=en_us
-set spellfile=~/.vim/spell/en.utf-8.add
+nnoremap <leader>sp :set spell spelllang=en_us<cr>
+set spellfile=.en.utf-8.add,~/.vim/spell/en.utf-8.add
 " Turn off capitalization checking
 set spellcapcheck=
 
