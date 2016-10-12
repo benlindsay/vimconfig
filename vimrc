@@ -120,9 +120,7 @@ endif
 colorscheme desert
 
 " Custom color scheme for vimdiff
-if &diff
-  colorscheme vimdiffcolors
-endif
+au FilterWritePre * if &diff | colorscheme vimdiffcolors | endif
 
 " Set coloring of line numbers on left
 highlight LineNr ctermfg=black  ctermbg=lightgrey
